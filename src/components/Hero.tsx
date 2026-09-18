@@ -1,19 +1,13 @@
-import React from 'react';
+import React from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Mail, ArrowRight, Download, Sparkles } from "lucide-react";
 import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
-import {
-  Mail,
-  ArrowRight,
-  Download,
-  Sparkles,
-} from 'lucide-react';
-import { personalInfo, socialLinks, coreTechBadges } from '../data/portfolioData';
-import { useTranslations } from '../hooks/useTranslations';
-import { GithubIcon, LinkedinIcon } from './BrandIcons';
+  personalInfo,
+  socialLinks,
+  coreTechBadges,
+} from "../data/portfolioData";
+import { useTranslations } from "../hooks/useTranslations";
+import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 
 export const Hero: React.FC = () => {
   const { t } = useTranslations();
@@ -26,15 +20,11 @@ export const Hero: React.FC = () => {
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(springY, [-0.5, 0.5], ['14deg', '-14deg']);
-  const rotateY = useTransform(springX, [-0.5, 0.5], ['-14deg', '14deg']);
-  const glareOpacity = useTransform(
-    springY,
-    [-0.5, 0, 0.5],
-    [0.2, 0.05, 0.2]
-  );
-  const glareX = useTransform(springX, [-0.5, 0.5], ['0%', '100%']);
-  const glareY = useTransform(springY, [-0.5, 0.5], ['0%', '100%']);
+  const rotateX = useTransform(springY, [-0.5, 0.5], ["14deg", "-14deg"]);
+  const rotateY = useTransform(springX, [-0.5, 0.5], ["-14deg", "14deg"]);
+  const glareOpacity = useTransform(springY, [-0.5, 0, 0.5], [0.2, 0.05, 0.2]);
+  const glareX = useTransform(springX, [-0.5, 0.5], ["0%", "100%"]);
+  const glareY = useTransform(springY, [-0.5, 0.5], ["0%", "100%"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -63,7 +53,7 @@ export const Hero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="lg:col-span-7 flex flex-col items-start"
           >
             {/* Status availability badge */}
@@ -72,22 +62,22 @@ export const Hero: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>{t('hero.badge')}</span>
+              <span>{t("hero.badge")}</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15] mb-4">
               <span className="text-slate-700 dark:text-slate-200 font-medium text-xl sm:text-2xl block mb-1">
-                {t('hero.greeting')}
+                {t("hero.greeting")}
               </span>
               <span className="text-emerald-600 dark:text-emerald-400">
-                {t('hero.headline')}
+                {t("hero.headline")}
               </span>
             </h1>
 
             {/* Subtext */}
             <p className="text-slate-600 dark:text-slate-200 text-base sm:text-lg leading-relaxed max-w-2xl mb-8">
-              {t('hero.subtext')}
+              {t("hero.subtext")}
             </p>
 
             {/* CTA Action Buttons */}
@@ -96,7 +86,7 @@ export const Hero: React.FC = () => {
                 href="#projects"
                 className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-emerald-500 hover:bg-emerald-600 shadow-md shadow-emerald-500/25 transition-all hover:translate-y-[-1px]"
               >
-                <span>{t('hero.cta.projects')}</span>
+                <span>{t("hero.cta.projects")}</span>
                 <ArrowRight size={17} />
               </a>
 
@@ -104,16 +94,19 @@ export const Hero: React.FC = () => {
                 href="#contact"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all hover:translate-y-[-1px]"
               >
-                <span>{t('hero.cta.contact')}</span>
+                <span>{t("hero.cta.contact")}</span>
               </a>
 
               <a
-                href="mailto:abhisharmaku099@gmail.com"
-                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition-colors"
-                title="Quick Email Abhijeet"
+                href={personalInfo.resumePdfUrl}
+                download="Abhijeet_Kumar_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition-colors shadow-sm"
+                title="Download Official Resume PDF"
               >
-                <Download size={16} />
-                <span>{t('hero.cta.resume')}</span>
+                <Download size={16} className="text-emerald-500" />
+                <span>{t("hero.cta.resume")}</span>
               </a>
             </div>
 
@@ -133,9 +126,11 @@ export const Hero: React.FC = () => {
                       className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center justify-center transition-all hover:scale-105"
                       aria-label={social.ariaLabel}
                     >
-                      {social.iconName === 'github' && <GithubIcon size={17} />}
-                      {social.iconName === 'linkedin' && <LinkedinIcon size={17} />}
-                      {social.iconName === 'mail' && <Mail size={17} />}
+                      {social.iconName === "github" && <GithubIcon size={17} />}
+                      {social.iconName === "linkedin" && (
+                        <LinkedinIcon size={17} />
+                      )}
+                      {social.iconName === "mail" && <Mail size={17} />}
                     </a>
                   );
                 })}
@@ -158,17 +153,17 @@ export const Hero: React.FC = () => {
               style={{
                 rotateX,
                 rotateY,
-                transformStyle: 'preserve-3d',
+                transformStyle: "preserve-3d",
               }}
               whileHover={{ scale: 1.03 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
               className="relative w-80 sm:w-88 h-[400px] sm:h-[440px] rounded-3xl p-3 bg-gradient-to-b from-slate-200/80 via-slate-100 to-slate-200/80 dark:from-slate-800/80 dark:via-slate-900/90 dark:to-slate-800/80 border border-slate-300/80 dark:border-slate-700/80 shadow-2xl cursor-pointer select-none group"
             >
               {/* Inner 3D Photo Container */}
               <div
                 style={{
-                  transform: 'translateZ(30px)',
-                  transformStyle: 'preserve-3d',
+                  transform: "translateZ(30px)",
+                  transformStyle: "preserve-3d",
                 }}
                 className="w-full h-full rounded-2xl overflow-hidden bg-slate-900 relative shadow-inner flex items-center justify-center"
               >
@@ -177,7 +172,8 @@ export const Hero: React.FC = () => {
                   alt={personalInfo.name}
                   className="w-full h-full object-cover object-top filter contrast-[1.03] group-hover:scale-105 transition-transform duration-700 ease-out"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = personalInfo.avatarAbout;
+                    (e.target as HTMLImageElement).src =
+                      personalInfo.avatarAbout;
                   }}
                 />
 
@@ -195,7 +191,7 @@ export const Hero: React.FC = () => {
 
                 {/* 3D Elevated Name Badge */}
                 <div
-                  style={{ transform: 'translateZ(40px)' }}
+                  style={{ transform: "translateZ(40px)" }}
                   className="absolute bottom-4 left-4 right-4 text-center pointer-events-none"
                 >
                   <h3 className="text-base font-bold text-white tracking-wide drop-shadow-md">
@@ -223,7 +219,7 @@ export const Hero: React.FC = () => {
           <div className="flex items-center gap-2 mb-4">
             <Sparkles size={15} className="text-emerald-500" />
             <span className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
-              {t('hero.coreSkills')}
+              {t("hero.coreSkills")}
             </span>
           </div>
 

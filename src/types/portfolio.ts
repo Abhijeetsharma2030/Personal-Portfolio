@@ -47,26 +47,26 @@ export interface ExperienceItem {
   roleKey: string;
   period: string;
   locationKey: string;
-  type: 'Full-time' | 'Internship' | 'Contract';
+  type: 'Full-time' | 'Contract' | 'Internship' | 'Part-time';
   descriptionKey: string;
+  featured?: boolean;
   points: string[];
   technologies: string[];
-  featured?: boolean;
 }
 
 export interface ProjectItem {
   id: string;
   title: string;
-  category: 'fullstack' | 'realtime' | 'ml' | 'frontend';
+  category: 'fullstack' | 'frontend' | 'realtime' | 'ml';
   descriptionKey: string;
   longDescriptionKey?: string;
   image: string;
-  liveUrl?: string;
   githubUrl?: string;
+  liveUrl?: string;
   technologies: string[];
   metrics?: string[];
   architecturePoints?: string[];
-  featured: boolean;
+  featured?: boolean;
 }
 
 export interface EducationItem {
@@ -87,6 +87,12 @@ export interface CertificationItem {
   credentialUrl?: string;
 }
 
+export interface BiodataField {
+  label: string;
+  value: string;
+  category: 'personal' | 'professional' | 'education';
+}
+
 export interface ContactFormData {
   name: string;
   email: string;
@@ -105,6 +111,8 @@ export interface PersonalInfo {
   email: string;
   github: string;
   linkedin: string;
+  portfolioUrl?: string;
+  resumePdfUrl: string;
   experienceYears: string;
   statusKey: string;
   avatarBlob: string;
